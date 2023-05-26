@@ -11,6 +11,37 @@ import { useDispatch } from "react-redux";
 import { EditTodoCheckbox, RemoveTodo } from "../Redux/actions/todoActions";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+const styles = {
+  mapDiv: {
+    margin: "10px",
+    display: "flex",
+    alignItems: "start",
+    fontFamily: "Open Sans",
+  },
+  main: { maxWidth: "600px", fontFamily: "Open Sans" },
+  typography: { width: "25%", flexShrink: 0, fontFamily: "Open Sans" },
+  typographyTwo: {
+    color: "black",
+    width: "70%",
+    fontFamily: "Open Sans",
+    fontWeight: 'bold',
+    fontSize:'14px'
+  },
+  typographyThree: {
+    width: "15%",
+    flexShrink: 0,
+    opacity: ".6",
+    fontSize: ".8rem",
+    fontFamily: "Open Sans",
+  },
+  divTwo: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  checkbox: { margin: 0, padding: 0 },
+};
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export const getThisTime = (): { date: string; time: string } => {
@@ -32,25 +63,17 @@ export default function ControlledAccordions() {
     const checked: boolean = e.target.checked;
     dispatch(EditTodoCheckbox(id, checked));
   };
-  const deleteHandle = (id: number)=>{
+  const deleteHandle = (id: number) => {
     dispatch(RemoveTodo(id));
-  }
+  };
   return (
-    <div style={{ maxWidth: "600px", fontFamily: "Open Sans" }}>
+    <div style={styles.main}>
       {state.Todo.todo_array.map((item: Todo) => (
-        <div
-          key={item.id}
-          style={{
-            margin: "10px",
-            display: "flex",
-            alignItems: "start",
-            fontFamily: "Open Sans",
-          }}
-        >
+        <div key={item.id} style={styles.mapDiv}>
           <Accordion
             sx={{
               minWidth: "600px",
-              backgroundColor: item.checked ? "#b3e5fc" : "",
+              backgroundColor: item.checked ? "#b3e5fc" : "#e0f7fa",
             }}
             expanded={expanded === item.id.toString()}
             onChange={handleChange(item.id.toString())}
@@ -60,29 +83,9 @@ export default function ControlledAccordions() {
               aria-controls="panel1bh-content"
               id="panel1bh-header"
             >
-              <Typography
-                sx={{ width: "25%", flexShrink: 0, fontFamily: "Open Sans" }}
-              >
-                {item.time.date}
-              </Typography>
-              <Typography
-                sx={{
-                  color: "text.secondary",
-                  width: "70%",
-                  fontFamily: "Open Sans",
-                }}
-              >
-                {item.title}
-              </Typography>
-              <Typography
-                sx={{
-                  width: "15%",
-                  flexShrink: 0,
-                  opacity: ".6",
-                  fontSize: ".8rem",
-                  fontFamily: "Open Sans",
-                }}
-              >
+              <Typography sx={styles.typography}>{item.time.date}</Typography>
+              <Typography sx={styles.typographyTwo}>{item.title}</Typography>
+              <Typography sx={styles.typographyThree}>
                 {item.time.time}
               </Typography>
             </AccordionSummary>
@@ -92,19 +95,16 @@ export default function ControlledAccordions() {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <DeleteIcon onClick={()=>deleteHandle(item.id)} sx={{cursor:'pointer'}} color="error" />
+          <div style={styles.divTwo as React.CSSProperties}>
+            <DeleteIcon
+              onClick={() => deleteHandle(item.id)}
+              sx={{ cursor: "pointer" }}
+              color="error"
+            />
             <Checkbox
               onChange={(e) => handleCheckbox(e, item.id)}
               {...label}
-              sx={{ margin: 0, padding: 0 }}
+              sx={styles.checkbox}
             />
           </div>
         </div>

@@ -10,7 +10,30 @@ import "@fontsource/open-sans";
 import { getThisTime } from "./accordion";
 import { AddTodo } from "../Redux/actions/todoActions";
 import { useDispatch } from "react-redux";
-
+const styles = {
+  btn: {
+    fontFamily: "Open Sans",
+    backgroundColor: "#e0f2f1",
+    fontWeight: "bolder",
+    marginLeft: "10px",
+  },
+  h2: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    fontFamily: "Open Sans",
+  },
+  box: {
+    width: 500,
+    maxWidth: "100%",
+    fontFamily: "Open Sans",
+  },
+  box2: {
+    width: 500,
+    marginTop: "20px",
+    maxWidth: "100%",
+    fontFamily: "Open Sans",
+  },
+};
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -40,9 +63,9 @@ export default function CustomizedDialogs() {
   const handleAddItem = () => {
     handleClose();
     const newTodo = createNewTodo();
-    dispatch(AddTodo(newTodo))
+    dispatch(AddTodo(newTodo));
   };
-  const createNewTodo = ()=>{
+  const createNewTodo = () => {
     const id = Math.floor(Math.random() * 10000);
     return {
       id: id,
@@ -51,15 +74,11 @@ export default function CustomizedDialogs() {
       time: getThisTime(),
       checked: false,
     };
-  }
+  };
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        onClick={handleClickOpen}
-        style={{ fontFamily: "Open Sans" }}
-      >
+      <Button variant="outlined" onClick={handleClickOpen} style={styles.btn}>
         Add todo item
       </Button>
       <BootstrapDialog
@@ -67,24 +86,11 @@ export default function CustomizedDialogs() {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <h2
-          id="customized-dialog-title"
-          style={{
-            marginLeft: "auto",
-            marginRight: "auto",
-            fontFamily: "Open Sans",
-          }}
-        >
+        <h2 id="customized-dialog-title" style={styles.h2}>
           Add new Todo item
         </h2>
         <DialogContent dividers>
-          <Box
-            sx={{
-              width: 500,
-              maxWidth: "100%",
-              fontFamily: "Open Sans",
-            }}
-          >
+          <Box sx={styles.box}>
             <TextField
               onChange={titleHandle}
               fullWidth
@@ -92,14 +98,7 @@ export default function CustomizedDialogs() {
               id="fullWidth"
             />
           </Box>
-          <Box
-            sx={{
-              width: 500,
-              marginTop: "20px",
-              maxWidth: "100%",
-              fontFamily: "Open Sans",
-            }}
-          >
+          <Box sx={styles.box2}>
             <TextField
               onChange={desHandle}
               fullWidth
