@@ -10,7 +10,7 @@ export const AddTodo = (todo: Todo) => (dispatch: any, getState: any) => {
 };
 export const RemoveTodo = (id: number) => (dispatch: any, getState: any) => {
   const { Todo: thisState } = getState();
-
+  
   dispatch({
     type: "REMOVE_TODO",
     payload: thisState.todo_array.filter((item: Todo) => {

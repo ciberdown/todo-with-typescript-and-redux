@@ -8,7 +8,9 @@ import Checkbox from "@mui/material/Checkbox";
 import { useSelector } from "react-redux";
 import { Todo } from "./interfaces";
 import { useDispatch } from "react-redux";
-import { EditTodoCheckbox } from "../Redux/actions/todoActions";
+import { EditTodoCheckbox, RemoveTodo } from "../Redux/actions/todoActions";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export const getThisTime = (): { date: string; time: string } => {
@@ -21,7 +23,6 @@ export const getThisTime = (): { date: string; time: string } => {
 export default function ControlledAccordions() {
   const dispatch = useDispatch();
   const state = useSelector((state: any) => state);
-  console.log(state);
   const [expanded, setExpanded] = React.useState<string | false>(false);
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -31,22 +32,28 @@ export default function ControlledAccordions() {
     const checked: boolean = e.target.checked;
     dispatch(EditTodoCheckbox(id, checked));
   };
+  const deleteHandle = (id: number)=>{
+    dispatch(RemoveTodo(id));
+  }
   return (
     <div style={{ maxWidth: "600px", fontFamily: "Open Sans" }}>
       {state.Todo.todo_array.map((item: Todo) => (
         <div
           key={item.id}
           style={{
-            margin: '10px',
+            margin: "10px",
             display: "flex",
             alignItems: "start",
             fontFamily: "Open Sans",
           }}
         >
           <Accordion
-          sx={{minWidth:'600px'}}
-            expanded={expanded === "panel1"}
-            onChange={handleChange("panel1")}
+            sx={{
+              minWidth: "600px",
+              backgroundColor: item.checked ? "#b3e5fc" : "",
+            }}
+            expanded={expanded === item.id.toString()}
+            onChange={handleChange(item.id.toString())}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -58,7 +65,6 @@ export default function ControlledAccordions() {
               >
                 {item.time.date}
               </Typography>
-
               <Typography
                 sx={{
                   color: "text.secondary",
@@ -86,12 +92,21 @@ export default function ControlledAccordions() {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Checkbox
-            onChange={(e) => handleCheckbox(e, item.id)}
-            {...label}
-            sx={{ marginTop: "5px" }}
-          />
-          {item.checked === true && <p>done!</p>}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <DeleteIcon onClick={()=>deleteHandle(item.id)} sx={{cursor:'pointer'}} color="error" />
+            <Checkbox
+              onChange={(e) => handleCheckbox(e, item.id)}
+              {...label}
+              sx={{ margin: 0, padding: 0 }}
+            />
+          </div>
         </div>
       ))}
     </div>
