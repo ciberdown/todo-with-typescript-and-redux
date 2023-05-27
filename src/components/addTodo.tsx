@@ -10,28 +10,26 @@ import "@fontsource/open-sans";
 import { getThisTime } from "./accordion";
 import { AddTodo } from "../Redux/actions/todoActions";
 import { useDispatch } from "react-redux";
+import { Typography } from "@mui/material";
 const styles = {
   btn: {
-    fontFamily: "Open Sans",
     backgroundColor: "#e0f2f1",
     fontWeight: "bolder",
     marginLeft: "10px",
   },
   h2: {
+    fontFamily: "Open Sans",
     marginLeft: "auto",
     marginRight: "auto",
-    fontFamily: "Open Sans",
   },
   box: {
     width: 500,
     maxWidth: "100%",
-    fontFamily: "Open Sans",
   },
   box2: {
     width: 500,
     marginTop: "20px",
     maxWidth: "100%",
-    fontFamily: "Open Sans",
   },
 };
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -86,9 +84,7 @@ export default function CustomizedDialogs() {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <h2 id="customized-dialog-title" style={styles.h2}>
-          Add new Todo item
-        </h2>
+        <Typography m={3} align="center" variant="h5">Add new Todo item</Typography>
         <DialogContent dividers>
           <Box sx={styles.box}>
             <TextField

@@ -16,23 +16,19 @@ const styles = {
     margin: "10px",
     display: "flex",
     alignItems: "start",
-    fontFamily: "Open Sans",
   },
-  main: { maxWidth: "600px", fontFamily: "Open Sans" },
-  typography: { width: "25%", flexShrink: 0, fontFamily: "Open Sans" },
+  main: { maxWidth: "600px" },
+  typography: { width: "25%", flexShrink: 0 },
   typographyTwo: {
     color: "black",
     width: "70%",
-    fontFamily: "Open Sans",
-    fontWeight: 'bold',
-    fontSize:'14px'
+    fontSize: "14px",
   },
   typographyThree: {
     width: "15%",
     flexShrink: 0,
     opacity: ".6",
     fontSize: ".8rem",
-    fontFamily: "Open Sans",
   },
   divTwo: {
     display: "flex",
@@ -90,9 +86,7 @@ export default function ControlledAccordions() {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography sx={{ fontFamily: "Open Sans" }}>
-                {item.describition}
-              </Typography>
+              <Typography>{item.describition}</Typography>
             </AccordionDetails>
           </Accordion>
           <div style={styles.divTwo as React.CSSProperties}>
