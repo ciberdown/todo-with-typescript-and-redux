@@ -25,7 +25,7 @@ const styles = {
     fontSize: "14px",
   },
   typographyThree: {
-    width: "15%",
+    width: "5%",
     flexShrink: 0,
     opacity: ".6",
     fontSize: ".8rem",
@@ -37,6 +37,7 @@ const styles = {
     alignItems: "center",
   },
   checkbox: { margin: 0, padding: 0 },
+  arrow_icon_width: '30px'
 };
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -71,16 +72,22 @@ export default function ControlledAccordions() {
               minWidth: "600px",
               backgroundColor: item.checked ? "#b3e5fc" : "#e0f7fa",
             }}
-            expanded={expanded === item.id.toString()}
+            expanded={
+              expanded === item.id.toString() &&
+              item.describition !== ""//des not empty
+            }
             onChange={handleChange(item.id.toString())}
           >
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
+              
               aria-controls="panel1bh-content"
               id="panel1bh-header"
             >
               <Typography sx={styles.typography}>{item.time.date}</Typography>
               <Typography sx={styles.typographyTwo}>{item.title}</Typography>
+              {item.checked && <Typography sx={{mr:'10px'}}>Done!</Typography>}
+              {item.describition !== '' ? <ExpandMoreIcon sx={{ width:styles.arrow_icon_width}} />:
+              <Typography sx={{mr:styles.arrow_icon_width}} ></Typography>}
               <Typography sx={styles.typographyThree}>
                 {item.time.time}
               </Typography>
@@ -99,6 +106,7 @@ export default function ControlledAccordions() {
               onChange={(e) => handleCheckbox(e, item.id)}
               {...label}
               sx={styles.checkbox}
+              defaultChecked={item.checked}
             />
           </div>
         </div>

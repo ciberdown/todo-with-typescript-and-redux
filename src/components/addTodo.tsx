@@ -68,7 +68,7 @@ export default function CustomizedDialogs() {
     return {
       id: id,
       title: titleVal,
-      describition: desVal,
+      describition: desVal.replace(/\s/g, ""),
       time: getThisTime(),
       checked: false,
     };
@@ -98,7 +98,7 @@ export default function CustomizedDialogs() {
             <TextField
               onChange={desHandle}
               fullWidth
-              label="Description"
+              label="Description(Recommended)"
               id="fullWidth"
             />
           </Box>

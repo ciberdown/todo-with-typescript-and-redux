@@ -2,7 +2,7 @@ import { Todo } from "../../components/interfaces";
 export const AddTodo = (todo: Todo) => (dispatch: any, getState: any) => {
   //with Redux-thunk nested arrow functions
   const { Todo: thisState } = getState();
-
+  
   dispatch({
     type: "ADD_TODO",
     payload: [todo, ...thisState.todo_array],
