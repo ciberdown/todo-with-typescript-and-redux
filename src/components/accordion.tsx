@@ -10,34 +10,44 @@ import { Todo } from "./interfaces";
 import { useDispatch } from "react-redux";
 import { EditTodoCheckbox, RemoveTodo } from "../Redux/actions/todoActions";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import { Box } from "@mui/material";
+const todo_width: string = "400px";
 const styles = {
+  main: {
+    display: "grid",
+    gridTemplateColumns: `repeat(auto-fit, minmax(${todo_width}, 1fr)`,
+    columnGap: "10px",
+  },
+  desc: { opacity: 0.6 },
+  typography: { width: "25%", flexShrink: 0 },
+  title: {
+    color: "black",
+    width: "70%",
+    fontSize: "14px",
+    fontWeight:'bolder'
+  },
   mapDiv: {
     margin: "10px",
     display: "flex",
     alignItems: "start",
+    minWidth: todo_width,
   },
-  main: { maxWidth: "600px" },
-  typography: { width: "25%", flexShrink: 0 },
-  typographyTwo: {
-    color: "black",
-    width: "70%",
-    fontSize: "14px",
-  },
-  typographyThree: {
+
+  time: {
     width: "5%",
     flexShrink: 0,
     opacity: ".6",
     fontSize: ".8rem",
+    p: "3px",
   },
-  divTwo: {
+  flexBox: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
   },
   checkbox: { margin: 0, padding: 0 },
-  arrow_icon_width: '30px'
+  arrow_icon_width: "30px",
 };
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -69,34 +79,35 @@ export default function ControlledAccordions() {
         <div key={item.id} style={styles.mapDiv}>
           <Accordion
             sx={{
-              minWidth: "600px",
+              width: "100%",
               backgroundColor: item.checked ? "#b3e5fc" : "#e0f7fa",
             }}
             expanded={
-              expanded === item.id.toString() &&
-              item.describition !== ""//des not empty
+              expanded === item.id.toString() && item.describition !== "" //des not empty
             }
             onChange={handleChange(item.id.toString())}
           >
             <AccordionSummary
-              
               aria-controls="panel1bh-content"
               id="panel1bh-header"
             >
               <Typography sx={styles.typography}>{item.time.date}</Typography>
-              <Typography sx={styles.typographyTwo}>{item.title}</Typography>
-              {item.checked && <Typography sx={{mr:'10px'}}>Done!</Typography>}
-              {item.describition !== '' ? <ExpandMoreIcon sx={{ width:styles.arrow_icon_width}} />:
-              <Typography sx={{mr:styles.arrow_icon_width}} ></Typography>}
-              <Typography sx={styles.typographyThree}>
-                {item.time.time}
-              </Typography>
+              <Typography sx={styles.title}>{item.title}</Typography>
+              {item.checked && (
+                <Typography sx={{ mr: "10px" }}>Done!</Typography>
+              )}
+              {item.describition !== "" ? (
+                <ExpandMoreIcon sx={{ width: styles.arrow_icon_width }} />
+              ) : (
+                <Typography sx={{ mr: styles.arrow_icon_width }}></Typography>
+              )}
+              <Typography sx={styles.time}>{item.time.time}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>{item.describition}</Typography>
+              <Typography sx={styles.desc}>{item.describition}</Typography>
             </AccordionDetails>
           </Accordion>
-          <div style={styles.divTwo as React.CSSProperties}>
+          <Box style={styles.flexBox as React.CSSProperties}>
             <DeleteIcon
               onClick={() => deleteHandle(item.id)}
               sx={{ cursor: "pointer" }}
@@ -108,7 +119,7 @@ export default function ControlledAccordions() {
               sx={styles.checkbox}
               defaultChecked={item.checked}
             />
-          </div>
+          </Box>
         </div>
       ))}
     </div>

@@ -7,7 +7,7 @@ const initial_value = [
       `Story
       My friend, our toddlers and I were shopping at Michael's. We were speaking Spanish. Then 5 cops showed up inside the store and accused us of shoplifting. I gave them my id ...`,
     time: getThisTime(),
-    checked: true,
+    checked: false,
   },  {
     id: 2,
     title: "meet Amin at 3:00 pm",

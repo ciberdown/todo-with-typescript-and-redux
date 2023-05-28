@@ -11,6 +11,7 @@ import { getThisTime } from "./accordion";
 import { AddTodo } from "../Redux/actions/todoActions";
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
+
 const styles = {
   btn: {
     backgroundColor: "#e0f2f1",
@@ -75,7 +76,7 @@ export default function CustomizedDialogs() {
   };
 
   return (
-    <div>
+    <div >
       <Button variant="outlined" onClick={handleClickOpen} style={styles.btn}>
         Add todo item
       </Button>
@@ -84,7 +85,9 @@ export default function CustomizedDialogs() {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <Typography m={3} align="center" variant="h5">Add new Todo item</Typography>
+        <Typography m={3} align="center" variant="h5">
+          Add new Todo item
+        </Typography>
         <DialogContent dividers>
           <Box sx={styles.box}>
             <TextField
