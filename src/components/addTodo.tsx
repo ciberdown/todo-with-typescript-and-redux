@@ -11,28 +11,8 @@ import { getThisTime } from "./accordion";
 import { AddTodo } from "../Redux/actions/todoActions";
 import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
+import { addtodo_styles as styles } from "../theme/styles";
 
-const styles = {
-  btn: {
-    backgroundColor: "#e0f2f1",
-    fontWeight: "bolder",
-    marginLeft: "10px",
-  },
-  h2: {
-    fontFamily: "Open Sans",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-  box: {
-    width: 500,
-    maxWidth: "100%",
-  },
-  box2: {
-    width: 500,
-    marginTop: "20px",
-    maxWidth: "100%",
-  },
-};
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
