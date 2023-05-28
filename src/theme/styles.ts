@@ -1,3 +1,4 @@
+
 export const todo_width: string = '400px'
 
 export const accordion_styles = {
@@ -6,10 +7,12 @@ export const accordion_styles = {
       gridTemplateColumns: `repeat(auto-fit, minmax(${todo_width}, 1fr)`,
       columnGap: "10px",
     },
+    checked_color: "#a7ffeb",
+    unChecked_color: "#e0f7fa",
+    text_color: 'black',
     desc: { opacity: 0.6 },
-    typography: { width: "25%", flexShrink: 0 },
+    date: { width: "25%", flexShrink: 0, fontSize:'0.8em', opacity:.7 , p:.5},
     title: {
-      color: "black",
       width: "70%",
       fontSize: "14px",
       fontWeight:'bolder'

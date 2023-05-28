@@ -13,13 +13,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Box } from "@mui/material";
 import { accordion_styles as styles } from "../theme/styles";
 
-
-
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export const getThisTime = (): { date: string; time: string } => {
   const myDate = new Date();
-  const date: string = `${myDate.getFullYear()}/${myDate.getMonth()}/${myDate.getDay()}`
+  
+  const date: string = `${myDate.getFullYear()}/${myDate.getMonth()}/${myDate.getDate()}`;
   const time: string = `${myDate.getHours()}:${myDate.getMinutes()}`;
   return { date: date, time: time };
 };
@@ -46,8 +45,12 @@ export default function ControlledAccordions() {
           <Accordion
             sx={{
               width: "100%",
-              backgroundColor: item.checked ? "#b3e5fc" : "#e0f7fa",
+              backgroundColor: item.checked
+                ? styles.checked_color
+                : styles.unChecked_color,
+              color: styles.text_color,
             }}
+            
             expanded={
               expanded === item.id.toString() && item.describition !== "" //des not empty
             }
@@ -57,7 +60,7 @@ export default function ControlledAccordions() {
               aria-controls="panel1bh-content"
               id="panel1bh-header"
             >
-              <Typography sx={styles.typography}>{item.time.date}</Typography>
+              <Typography sx={styles.date}>{item.time.date}</Typography>
               <Typography sx={styles.title}>{item.title}</Typography>
               {item.checked && (
                 <Typography sx={{ mr: "10px" }}>Done!</Typography>
