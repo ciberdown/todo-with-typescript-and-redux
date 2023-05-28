@@ -49,7 +49,7 @@ export default function CustomizedDialogs() {
     return {
       id: id,
       title: titleVal,
-      describition: desVal.replace(/\s/g, ""),
+      describition: desVal,
       time: getThisTime(),
       checked: false,
     };

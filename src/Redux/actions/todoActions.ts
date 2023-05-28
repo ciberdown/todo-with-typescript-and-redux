@@ -2,7 +2,8 @@ import { Todo } from "../../components/interfaces";
 export const AddTodo = (todo: Todo) => (dispatch: any, getState: any) => {
   //with Redux-thunk nested arrow functions
   const { Todo: thisState } = getState();
-  
+  todo.describition = todo.describition.replace(/\s/g, "");
+
   dispatch({
     type: "ADD_TODO",
     payload: [todo, ...thisState.todo_array],
@@ -10,7 +11,7 @@ export const AddTodo = (todo: Todo) => (dispatch: any, getState: any) => {
 };
 export const RemoveTodo = (id: number) => (dispatch: any, getState: any) => {
   const { Todo: thisState } = getState();
-  
+
   dispatch({
     type: "REMOVE_TODO",
     payload: thisState.todo_array.filter((item: Todo) => {

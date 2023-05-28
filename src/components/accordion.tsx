@@ -19,7 +19,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export const getThisTime = (): { date: string; time: string } => {
   const myDate = new Date();
-  const date: string = `${myDate.getFullYear()}/${myDate.getMonth()}/${myDate.getDay()}`;
+  const date: string = `${myDate.getFullYear()}/${myDate.getMonth()}/${myDate.getDay()}`
   const time: string = `${myDate.getHours()}:${myDate.getMinutes()}`;
   return { date: date, time: time };
 };
